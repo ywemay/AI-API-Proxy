@@ -1,0 +1,8 @@
+services:
+  proxy:
+    container_name: ai-api-ollama-proxy
+    build: .
+    ports:
+      - ${PORT}:80
+    environment:
+      - OLLAMA_URL

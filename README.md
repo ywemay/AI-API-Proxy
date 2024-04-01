@@ -1,15 +1,6 @@
 # AI API Proxy
 
-A basic proxy for ``ollama`` api that forward the requests from localhost to a remote.
-
-## Installing
-
-```bash
-# make virtual environment
-python3 -m venv env
-source env/bin/activate
-pip install -r requirements.txt
-```
+A basic proxy for ``ollama`` api that forwards the requests from localhost to a remote.
 
 ## Set Up
 
@@ -20,23 +11,21 @@ cp .env.example .env
 vim .env 
 ```
 
-## Running 
-
-### Local
+## Docker
 
 ```bash
-python proxy.py
+
+docker compose up -d --build
 ```
 
-### Apache2
+## On local machine
 
-```httpd
-<VirtualHost *:80>
-    ServerName myaiproxy.com
-    DocumentRoot /path/to/ai-api-proxy/
+```bash
+# make virtual environment
+python3 -m venv env
+source env/bin/activate
+pip install -r requirements.txt
 
-    WSGIDaemonProcess myflaskapp user=www-data group=www-data threads=5
-    WSGIProcessGroup myflaskapp
-    WSGIScriptAlias / /path/to/ai-api-proxy/proxy.py
-</VirtualHost>
+# run
+. .env && python proxy.py
 ```
